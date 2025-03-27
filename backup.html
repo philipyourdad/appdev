@@ -1,0 +1,113 @@
+<?php
+// Start the session
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <title>Database Backup, Restore, and Management</title>
+    <link rel="stylesheet" href="css/page_style.css">
+</head>
+<body>
+<div class="wrapper">
+    <aside id="sidebar" class="expand">
+        <div class="h-100">
+            <div class="d-flex" id="system-info">
+                <a href="main.html" class="box_icon" type="button">
+                    <i class="fa-solid fa-warehouse"></i>
+                </a>
+                <div class="sidebar-logo">
+                    <a href="main.html">Book Vault System</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a href="main.html" class="sidebar-link">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Library</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="favorite.html" class="sidebar-link">
+                        <i class="fa-solid fa-table-list pe-1"></i>
+                        <span>Favorite Books</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="backup.html" class="sidebar-link">
+                        <i class="fa-solid fa-table-list pe-1"></i>
+                        <span>Backup & Restore</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="logout-button">
+            <a href="logout.html" class="logout-button link-button">
+                <span>Logout</span>
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </button>
+    </aside>
+
+    <div class="main">
+        <nav class="navbar navbar-expand px-3 p-0 border-bottom shadow border-bottom">
+            <div class="navbar-collapse navbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a id="name" href="profile.html" class="nav-link">
+                            <?php 
+                            if(isset($_SESSION['fullname'])) {
+                                echo htmlspecialchars($_SESSION['fullname']); 
+                            } else {
+                                echo 'Guest';
+                            }
+                            ?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="content px-3 py-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="my-4">Database Backup, Restore, and Management</h1>
+
+                        <h2>Database Backup</h2>
+                        <form method="post" action="">
+                            <button type="submit" name="download_backup" class="btn btn-primary">Download Backup</button>
+                        </form>
+
+                        <h2>Database Restore</h2>
+                        <form method="post" action="" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <input type="file" name="restore_file" accept=".sql" class="form-control">
+                            </div>
+                            <button type="submit" name="restore" class="btn btn-primary">Restore</button>
+                        </form>
+
+                        <h2>Database Management</h2>
+                        
+                        <h3>Create a new database for recovery</h3>
+                        <form method="post" action="">
+                            <button type="submit" name="create_database" class="btn btn-success">Create Database</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXlCOv7B2xP6KT6VhZKQFKA/VGPNSxZlNf6A/0oPzVJ+J5XicKpPzo3B4tW6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cM03K5JdRmsKN/t8FzfGQ1ZXOlGIZ7Wv24e1LYD+47kxR/1D9t8L+BxNk3A2lQA5" crossorigin="anonymous"></script>
+</body>
+</html>
+
